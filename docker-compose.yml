@@ -22,6 +22,10 @@ services:
       - SPARK_WORKER_MEMORY=1G
       - SPARK_DRIVER_MEMORY=128m
       - SPARK_EXECUTOR_MEMORY=256m
+  jupyter:
+    image: jupyter:latest
+    ports:
+      - "3000:8000"    
     #volumes:
     #   - ./apps:/opt/spark-apps
     #   - ./data:/opt/spark-data

@@ -1,4 +1,3 @@
-#FROM spydernaz/spark-base:latest
 FROM spark-base:latest
 
 COPY start-master.sh /
