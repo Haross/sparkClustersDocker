@@ -23,6 +23,6 @@ RUN /bin/bash -c  "mkdir ~/notebooks" && \
 
 COPY ./jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 
-EXPOSE 8000
+EXPOSE 8000 4040
 
 CMD ["/bin/bash", "/start-jupyter.sh"]

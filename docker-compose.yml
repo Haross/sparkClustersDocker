@@ -2,16 +2,15 @@ version: "3.7"
 services:
   spark-master:
     image: spark-master:latest
+    container_name: spark-master
     ports:
       - "9090:8080"
       - "7077:7077"
-    #volumes:
-    #   - ./apps:/opt/spark-apps
-    #   - ./data:/opt/spark-data
     environment:
       - "SPARK_LOCAL_IP=spark-master"
   spark-worker:
     image: spark-worker:latest
+    container_name: spark-worker
     ports:
       - "8081-8085:8081"
     depends_on:
@@ -24,8 +23,28 @@ services:
       - SPARK_EXECUTOR_MEMORY=256m
   jupyter:
     image: jupyter:latest
+    container_name: jupyter
     ports:
-      - "3000:8000"    
+      - "3000:8000"
+      - "4040:4040"
+  namenode:
+    image: hdfs-namenode
+    container_name: namenode
+    ports:
+      - "9000:9000"
+      - "50070:50070"
+    volumes:
+      - ./data:/hadoop/data
+    environment:
+      - "HADOOP_CONF_DIR=/etc/hadoop"
+      - "USER=root"
+
+
+
+  #hue:
+  #  image: gethue/hue:latest
+  #  ports:
+  #    - "8888:8888"
     #volumes:
     #   - ./apps:/opt/spark-apps
     #   - ./data:/opt/spark-data
